@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    	<meta charset="utf-8">
+    	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+    	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    	<meta name="theme-color" content="#4DA5F4">
+    	<meta name="csrf-token" content="<%= _csrf %>">
+    	<title><%= title %> - Hackathon Starter</title>
+    	<link rel="shortcut icon" href="/favicon.png">
+    	<link rel="stylesheet" type="text/css" href="/css/main.css">
+    </head>
+    <body>
+    	<div class="navbar navbar-default navbar-fixed-top">
+    		<div class="container">
+    			<div class="navbar-header">
+    				<button type="button" data-toggle="collapse" data-target=".navbar-collapse" class="navbar-toggle">
+    					<span class="sr-only">Toggle navigation</span>
+    					<span class="icon-bar"></span>
+    					<span class="icon-bar"></span>
+    					<span class="icon-bar"></span>
+    				</button>
+    				<a href="/" class="navbar-brand">
+    					<i class="fa fa-cube"></i>
+    				</a>
+    			</div>
+    			<div class="collapse navbar-collapse">
+    				<ul class="nav navbar-nav">
+    					<li class="active">
+    						<a href="/">Home</a>
+    					</li>
+    					<li>
+    						<a href="/api">API Examples</a>
+    					</li>
+    					<li>
+    						<a href="/contact">Contact</a>
+    					</li>
+    				</ul>
+    				<ul class="nav navbar-nav navbar-right">
+    				    <% if(!user){ %>
+        					<li class="<%= (title=='Login')?'active':undefined %>">
+        						<a href="/login">Login</a>
+        					</li>
+        					<li class="<%= (title=='Create Account')?'active':undefined %>">
+        						<a href="/signup">Create Account</a>
+        					</li>
+        				<% } else { %>
+        				    <li class="dropdown">
+        				        <a href="#" data-toggle="dropdown" class="dropdown-toggle">
+        				            <img src="<%= user.profile.picture || user.gravatar(60) %>">
+        				            <%= user.profile.name || user.email || user.id %>&nbsp;
+        				            <i class="caret"></i>
+        				        </a>
+        				        <ul class="dropdown-menu <%= (title=='Account Management')?'active':undefined %>">
+        				            <li>
+        				                <a href="/account">My Account</a>
+        				            </li>
+        				            <li class="divider"></li>
+        				            <li>
+        				                <a href="/logout">Logout</a>
+        				            </li>
+        				        </ul>
+        				    </li>
+        				<% } %>
+    				</ul>
+    			</div>
+    		</div>
+    	</div>
+    	<div class="container">
+    	    <%- include('flash'); %>

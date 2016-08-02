@@ -22,7 +22,7 @@ const upload = multer({ dest: path.join(__dirname, 'uploads') });
 /**
  * Load environment variables from .env file, where API keys and passwords are configured.
  */
-dotenv.load({ path: '.env.example' });
+dotenv.load({path: 'vars.env'});
 
 /**
  * Controllers (route handlers).
@@ -56,7 +56,7 @@ mongoose.connection.on('error', () => {
  */
 app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+app.set('view engine', 'ejs');
 app.use(compression());
 app.use(sass({
   src: path.join(__dirname, 'public'),
@@ -218,3 +218,5 @@ app.listen(app.get('port'), () => {
 });
 
 module.exports = app;
+
+// npm install async bcrypt-nodejs cheerio clockwork connect-mongo dotenv body-parser express-session morgan compression errorhandler serve-favicon express-flash express-validator fbgraph github-api lastfm instagram-node lob lusca mongoose node-foursquare node-linkedin node-sass-middleware nodemailer passport passport-facebook passport-github passport-google-oauth passport-twitter passport-instagram passport-local passport-linkedin-oauth2 passport-oauth paypal-rest-sdk request stripe tumblr.js twilio twit lodash validator mocha chai supertest --save
