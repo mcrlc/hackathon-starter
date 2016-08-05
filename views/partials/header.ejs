@@ -26,22 +26,22 @@
     			</div>
     			<div class="collapse navbar-collapse">
     				<ul class="nav navbar-nav">
-    					<li class="active">
+    					<li class="<%= (title=="Home")?"active":undefined %>">
     						<a href="/">Home</a>
     					</li>
-    					<li>
+    					<li class="<%= (title=="API Examples")?"active":undefined %>">
     						<a href="/api">API Examples</a>
     					</li>
-    					<li>
+    					<li class="<%= (title=="Contact")?"active":undefined %>">
     						<a href="/contact">Contact</a>
     					</li>
     				</ul>
     				<ul class="nav navbar-nav navbar-right">
     				    <% if(!user){ %>
-        					<li class="<%= (title=='Login')?'active':undefined %>">
+        					<li class="<%= (title=="Login")?"active":undefined %>">
         						<a href="/login">Login</a>
         					</li>
-        					<li class="<%= (title=='Create Account')?'active':undefined %>">
+        					<li class="<%= (title=="Create Account")?"active":undefined %>">
         						<a href="/signup">Create Account</a>
         					</li>
         				<% } else { %>
@@ -51,7 +51,7 @@
         				            <%= user.profile.name || user.email || user.id %>&nbsp;
         				            <i class="caret"></i>
         				        </a>
-        				        <ul class="dropdown-menu <%= (title=='Account Management')?'active':undefined %>">
+        				        <ul class="dropdown-menu <%= (title=="Account Management")?"active":undefined %>">
         				            <li>
         				                <a href="/account">My Account</a>
         				            </li>
@@ -67,4 +67,4 @@
     		</div>
     	</div>
     	<div class="container">
-    	    <%- include('flash'); %>
+    	    <%- include("flash"); %>
